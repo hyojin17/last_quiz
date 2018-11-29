@@ -1,0 +1,7 @@
+<%= bootstrap_form_for @participate do |f| %>
+    <!--selcet_Tag-->
+    <%= f.select :artist_id, options_for_select(@artists.collect{ |artist| [artist.name, artist.id] }) %>
+    <%= f.select :song_id, options_for_select(@songs.collect{ |song| [song.title, song.id] }) %>
+    <!--song.title이 넘어가는 값, song.id가 보여주는 것-->
+    <%= f.submit %>
+<% end %>

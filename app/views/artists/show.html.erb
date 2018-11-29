@@ -1,0 +1,25 @@
+<h1><%= @artist.name %></h1>
+
+<%= render 'follow_UI', artist: @artist %>
+
+<% if user_editable? %>
+<!--<%# if ['admin', 'editor'].include? current_user.profile.role %>-->
+    <%= link_to fa_icon('edit 2x'), edit_artist_path(@artist) %> | 
+    <%= link_to fa_icon('trash 2x'), artist_path(@artist), method: :delete, data: {confirm: '삭제하시겠습니까?'}%>
+<% end %>
+<hr />
+
+<%= image_tag @artist.image.url, class: 'image-center' if @artist.image?  %>
+<ul>
+    <% @artist.songs.each do |song|  %>
+        <li>
+            <%= image_tag song.cover.url, style: "width: 50px" if song.cover? %>
+            <%= link_to song.title, song_path(song) %>
+        </li>
+    <% end %>
+</ul>
+
+<%= render 'comments/form', commentable: @artist %>
+
+<%= render 'comments/index', commentable: @artist %>
+<!--같은 폴더 안에  _index가 있는 것이 아니기 때문에, 경로를 설정해줘야 함.-->

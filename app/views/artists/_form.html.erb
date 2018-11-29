@@ -1,0 +1,25 @@
+<%= bootstrap_form_for artist do |f| %>
+    <div>
+        <%= f.text_field :name %>
+    </div>
+    
+    <div class="form-group">
+        <label for="artist_nationality">nationality</label>
+        <%= f.country_select :nationality, class: "form-control", priority_countries: ["KR", "US", "JP"] %>
+    </div>
+  
+    <div>
+        <%= f.file_field :image, accept: 'image/jpeg, image/jpg, image/gif, image/png' %>
+    </div>
+    
+    <%= f.submit %>
+<% end %>
+<!--파일이름이 보이게, 그리고 파일이름만 보이게 하기-->
+ <script>
+    $('#artist_image').on('change',function(){
+        //get the file name
+        var fileName = $(this).val().replace(/^.*[\\\/]/, '');
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>

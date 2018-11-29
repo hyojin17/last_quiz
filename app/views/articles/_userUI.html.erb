@@ -1,0 +1,10 @@
+<%= image_tag gravatar_url(@article.user.email, 64), alt: @article.user.profile.name %>
+<strong><%= @article.user.profile.name %></strong>
+
+<div>
+    <% if @article.user == current_user %>
+        <%= link_to fa_icon('edit 2x'), edit_article_path(@article) %> | 
+        <!--#아이콘을 edit, delet문자 대신 넣어주었다.아이콘이 edit을 누르는 역할을 하는것!-->
+        <%= link_to fa_icon('trash 2x'), article_path(@article), method: :delete, data: {confirm: '삭제하시겠습니까?'}%>
+    <% end %>
+</div>

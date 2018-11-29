@@ -1,0 +1,49 @@
+<h1><%= @user.email %>님의 프로필입니다.</h1>
+<%= image_tag gravatar_url(current_user.email, 40), alt: @profile.name %>
+<%= link_to fa_icon('edit 2x'), edit_profile_path %>
+
+<p><%= @profile.name %></p>
+<p><%= @profile.address %></p>
+<p><%= @profile.mobile %></p>
+<p><%= @profile.birth %></p>
+
+<div class="row">
+  <div class="col-md-4">
+    <h2>Following Songs</h2>
+    <ul>
+      <% @user.following_songs.each do |song| %>
+        <li>
+            <%= image_tag song.cover.thumb.url %>
+            <%= link_to song.title, song %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <h2>Following Artists</h2>
+    <ul>
+      <% @user.following_artists.each do |artist| %>
+        <li>
+            <%= image_tag artist.image.thumb.url %>
+            <%= link_to artist.name, artist %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <h2>My Articles</h2>
+    <ul>
+      <% @user.articles.each do |article| %><!--내가 작성한 글들-->
+        <li>
+            <%= article.title %>
+            <%= link_to article.title, article %>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
+
+
+
+
+

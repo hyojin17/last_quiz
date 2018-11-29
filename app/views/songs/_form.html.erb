@@ -1,0 +1,24 @@
+<%= bootstrap_form_for song do |f| %>
+    <div>
+        <%= f.text_field :title %>
+    </div>
+    
+    <div>
+    <%= f.text_area :lyric, class: 'tinymce', rows: 15 %>
+    <%= tinymce %>
+    </div>
+        
+    <div>
+        <%= f.file_field :cover, accept: 'image/jpeg, image/jpg, image/gif, image/png' %>
+    </div>
+    <%= f.submit %>
+<% end %>
+<script>
+    $('#song_cover').on('change',function(){
+        //get the file name
+        var fileName = $(this).val().replace(/^.*[\\\/]/, '');
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
+

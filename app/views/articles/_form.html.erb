@@ -1,0 +1,12 @@
+<%= bootstrap_form_for @article do |f| %>
+    <div>
+        <%= f.text_field :title %>
+    </div>
+    <div>
+        <%= f.text_area :content, class: 'tinymce', rows: 15 %>
+        <%= tinymce %>
+    </div>
+    <div>
+        <%= f.submit %>
+    </div>
+<% end %>

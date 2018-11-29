@@ -1,0 +1,27 @@
+<h1>Articles</h1>
+<%= link_to 'New article', new_article_path, class:"btn btn-primary", role:"button" %>
+<hr/>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Writer</th>
+      <th>likes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to "#{article.title}(#{article.comments.count})", article %></td>
+        <td><%= article.user.profile.name %></td>
+        <td><%= article.likes.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="center">
+    <%= paginate @articles, theme: 'twitter-bootstrap-4' %>
+</div>
+

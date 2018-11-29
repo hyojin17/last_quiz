@@ -1,0 +1,22 @@
+<% if @article.l_users.include?(current_user) %>
+    <!--좋아요를 했다면-->
+    <%= link_to(fa_icon('thumbs-up', style: 'color: blue'), like_article_path, method: :post) %>
+<% else %>
+    <!--좋아요를 안했다면-->
+    <%= link_to(fa_icon('thumbs-up', style: 'color: black'), like_article_path, method: :post) %>
+<% end %>
+
+
+<strong>
+    <% if @article.likes.count > 3 %>
+        <% @article.l_users.sample(3).each do |user| %>
+            <%= user.profile.name %>님,
+        <% end %>
+        외 <%= @article.likes.count - 3 %>명이 좋아합니다.
+    <% elsif @article.likes.count > 0 %>
+        <% @article.l_users.each do |user| %>
+            <%= user.profile.name %> 님,
+        <% end %>
+        이 좋아합니다.
+    <% end %>
+</strong>
